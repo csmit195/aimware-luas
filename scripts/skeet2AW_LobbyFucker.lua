@@ -1,3 +1,10 @@
+-- Auto Updater
+http.Get('https://raw.githubusercontent.com/csmit195/aimware-luas/master/skeet2AW_LobbyFucker.lua', function(text)
+	local f = file.Open('csmit195\\LobbyFucker.lua', "w+")
+	f:Write(text)
+	f:Close()
+end)
+
 local errorMessagePrefix = "#SFUI_QMM_ERROR_"
 
 local Lobby = {
