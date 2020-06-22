@@ -1,2 +1,2 @@
-LobbyFucker.lua,scripts/skeet2AW_LobbyFucker.lua,true
-LobbyInviter.lua,scripts/skeet2AW_LobbyInvite.lua,true
+LobbyFucker.lua,1.0,scripts/skeet2AW_LobbyFucker.lua,true
+LobbyInviter.lua,1.0,scripts/skeet2AW_LobbyInvite.lua,true
