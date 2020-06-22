@@ -26,6 +26,7 @@ if ( Force ) then
 		local f = file.Open(InstallLocation ..'updater.lua', "w+")
 		f:Write(text)
 		f:Close()
+		LoadScript(InstallLocation ..'updater.lua')
 	end)
 end
 

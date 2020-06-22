@@ -9,8 +9,13 @@
 	
 	Script Name: Auto Updater for my Aimware Trash Luas
 	Script Author: csmit195
+	Script Version: 1.0
 	Script Description: Shouldn't need a description...
 ]]
+
+if ( C_Update ) then
+	return print('Script already running!')
+end
 
 local updater = {
 	scripts = {},
@@ -72,7 +77,10 @@ updater.InitiateScript = function()
 		local label = script.FileName:sub(1,#script.FileName-4)
 		
 		local updateFunc = function()
-			updater.downloadScript(script.FileName)
+			updater.downloadScript(script.FileName, function()
+				updater.ui.buttons[script.FileName].Install:SetInvisible(method == 'Install')
+				updater.ui.buttons[script.FileName].Update:SetInvisible(method ~= 'Install')
+			end)
 		end
 		
 		updater.ui.buttons[script.FileName] = {}
@@ -83,6 +91,7 @@ updater.InitiateScript = function()
 		updater.ui.buttons[script.FileName].Update:SetInvisible(method == 'Install')
 	end
 end
+
 
 -- Utilities
 updater.magiclines = function(s)
