@@ -1,9 +1,33 @@
--- Auto Updater
-http.Get('https://raw.githubusercontent.com/csmit195/aimware-luas/master/skeet2AW_LobbyFucker.lua', function(text)
-	local f = file.Open('csmit195\\LobbyFucker.lua', "w+")
-	f:Write(text)
-	f:Close()
-end)
+--[[
+                           _   _     __    ___    _____                             __  
+                          (_) | |   /_ |  / _ \  | ____|                           / /
+   ___   ___   _ __ ___    _  | |_   | | | (_) | | |__         _ __ ___   ___     / / 
+  / __| / __| | '_ ` _ \  | | | __|  | |  \__, | |___ \       | '_ ` _ \ / _ \   / /  
+ | (__  \__ \ | | | | | | | | | |_   | |    / /   ___) |  _   | | | | | |  __/  / /   
+  \___| |___/ |_| |_| |_| |_|  \__|  |_|   /_/   |____/  (_)  |_| |_| |_|\___| /_/    
+	
+	
+	Script Name: Mass Lobby Inviter - Skeet Port
+	Script Author: csmit195
+	Script Description: Shouldn't need a description...
+]]
+
+local script = {}
+script.version = 1.0
+
+-- Update API Downloader - Force Mode ATM
+local Force = true
+if ( Force ) then
+	local updaterURL = 'https://raw.githubusercontent.com/csmit195/aimware-luas/master/updater.lua'
+	local InstallLocation = '$csmit195\\'
+	
+	-- Force download updater, in-case new version, even if its there.
+	http.Get(updaterURL, function(text)
+		local f = file.Open(InstallLocation ..'updater.lua', "w+")
+		f:Write(text)
+		f:Close()
+	end)
+end
 
 local errorMessagePrefix = "#SFUI_QMM_ERROR_"
 

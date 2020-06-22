@@ -9,7 +9,6 @@
 	
 	Script Name: Auto Updater for my Aimware Trash Luas
 	Script Author: csmit195
-	Script Version: 1.0
 	Script Description: Shouldn't need a description...
 ]]
 
@@ -21,7 +20,9 @@ local updater = {
 }
 
 updater.AutoUpdate = true
-updater.BasePath = 'https://raw.githubusercontent.com/csmit195/aimware-luas/master/'
+updater.GithubUsername = 'csmit195'
+updater.GithubProject = 'aimware-luas'
+updater.BasePath = 'https://raw.githubusercontent.com/' .. updater.GithubUsername .. '/' .. updater.GithubProject .. '/master/'
 updater.InstallLocation = '$csmit195\\'
 
 updater.scanGithub = function()
@@ -31,8 +32,9 @@ updater.scanGithub = function()
 				local FileInfo = line:split(',')
 				updater.scripts[#updater.scripts + 1] = {
 					FileName = FileInfo[1],
-					FileLocation = updater.BasePath .. FileInfo[2],
-					FileEnabled = FileInfo[3]
+					FileVersion = FileInfo[2]
+					FileLocation = updater.BasePath .. FileInfo[3],
+					FileEnabled = FileInfo[4]
 				}
 			end
 		end	
@@ -70,10 +72,7 @@ updater.InitiateScript = function()
 		local label = script.FileName:sub(1,#script.FileName-4)
 		
 		local updateFunc = function()
-			updater.downloadScript(script.FileName, function()
-				updater.ui.buttons[script.FileName]:Set('Fuckyeah')
-				print('called')
-			end)
+			updater.downloadScript(script.FileName)
 		end
 		
 		updater.ui.buttons[script.FileName] = {}
@@ -84,7 +83,6 @@ updater.InitiateScript = function()
 		updater.ui.buttons[script.FileName].Update:SetInvisible(method == 'Install')
 	end
 end
-
 
 -- Utilities
 updater.magiclines = function(s)
@@ -117,3 +115,5 @@ end
 
 -- Scans Github First, then once retrieved, the script will initiate.
 updater.scanGithub()
+
+C_Update = updater

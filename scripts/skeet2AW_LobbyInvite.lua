@@ -1,3 +1,20 @@
+--[[
+                           _   _     __    ___    _____                             __  
+                          (_) | |   /_ |  / _ \  | ____|                           / /
+   ___   ___   _ __ ___    _  | |_   | | | (_) | | |__         _ __ ___   ___     / / 
+  / __| / __| | '_ ` _ \  | | | __|  | |  \__, | |___ \       | '_ ` _ \ / _ \   / /  
+ | (__  \__ \ | | | | | | | | | |_   | |    / /   ___) |  _   | | | | | |  __/  / /   
+  \___| |___/ |_| |_| |_| |_|  \__|  |_|   /_/   |____/  (_)  |_| |_| |_|\___| /_/    
+	
+	
+	Script Name: Mass Lobby Inviter - Skeet Port
+	Script Author: csmit195
+	Script Description: Shouldn't need a description...
+]]
+
+local script = {}
+script.version = 1.0
+
 panorama.RunScript([[
 	if ( typeof collectedSteamIDS === 'undefined' ) {
 		$.Msg('Sorry cant find');
@@ -6,16 +23,17 @@ panorama.RunScript([[
 	}
 ]])
 
-
 local timers = {}
 local function timerCreate(name, delay, times, func)
     table.insert(timers, {["name"] = name, ["delay"] = delay, ["times"] = times, ["func"] = func, ["lastTime"] = globals.RealTime()})
 end
+
 local function timerRemove(name)
     for k,v in pairs(timers or {}) do
         if (name == v["name"]) then table.remove(timers, k) end
     end
 end
+
 local function timerTick()
     for k,v in pairs(timers or {}) do
         if (v["times"] <= 0) then table.remove(timers, k) end
