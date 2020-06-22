@@ -32,7 +32,7 @@ updater.scanGithub = function()
 				local FileInfo = line:split(',')
 				updater.scripts[#updater.scripts + 1] = {
 					FileName = FileInfo[1],
-					FileVersion = FileInfo[2]
+					FileVersion = FileInfo[2],
 					FileLocation = updater.BasePath .. FileInfo[3],
 					FileEnabled = FileInfo[4]
 				}
